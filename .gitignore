@@ -1,3 +1,12 @@
+# permanently remove .DS_Store from GitHub Desktop commits:
+# https://brandoncaples.com/martech/2022/git-remove-ds-store
+# Terminal in the root of the particular GitHub archive:
+# find . -name .DS_Store -print0 | xargs -0 git rm --ignore-unmatch
+#
+# 
+# open .gitignore
+**/.DS_Store
+
 # History files
 .Rhistory
 .Rapp.history
@@ -47,3 +56,12 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+.DS_Store
+ferritins_M20/.DS_Store
+ferritins_M20/01_FAMSA_AAs_aln_v1/.DS_Store
+ferritins_M20/02_FAMSA_3dis_aln_v1/.DS_Store
+ferritins_M20/03_USaln_v1/.DS_Store
+ferritins_M20af/.DS_Store
+ferritins_M20af/02_FAMSA_3dis_aln_v1/.DS_Store
+ferritins_M20af/03_USaln_v1/.DS_Store
+ferritins_M20af/align/.DS_Store
