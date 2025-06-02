@@ -1,0 +1,88 @@
+Hi folks! Sorry this took a bit.  Here's the quick-and-easy BGB run, this could be modified for more complex models as needed.
+
+O=Australia
+N=New Guinea
+W = Wallacea
+E - East Melanesia
+P = Pacific
+A = Asia
+
+Notes:
+* I had to cut nana7 from the tree as it is missing from the geog file
+* CYsp2 was Cysp2 in the tree, I fixed in the tree
+
+----------
+LnL numparams d e j AICc AICc_wt
+DEC -80.09 2 0.0039 1.0e-12 0 164.3 0.0015
+DEC+J -72.55 3 0.0016 1.0e-12 0.0081 151.4 1.00
+DIVALIKE -84.51 2 0.0052 1.0e-12 0 173.2 1.9e-05
+DIVALIKE+J -78.92 3 0.0030 1.0e-12 0.0078 164.1 0.0017
+BAYAREALIKE -112.8 2 0.0034 0.037 0 229.6 1.0e-17
+BAYAREALIKE+J -85.59 3 0.0017 1.0e-07 0.014 177.4 2.2e-06
+---------- 
+
+Best model attached (DEC+J, p. 3-4). The result getting "all areas" (white ONWEPA) at the root node (plurality not majority, ~40% probability) is unusual but I think reflects the fact that first 2 nodes above the root are estimated as basically allopatric (O=Australia vs. NWEPA on the other side, mostly tracing to the widespread WEPA insulana and WA mutilata being both deep branches and widespread).  This could easily change e.g. with outgroups added or constraints on the # of areas occupied.
+
+Happy to chat about next steps if there are specific hypotheses you want to test etc.
+
+Cheers!
+Nick
+
+
+
+
+
+
+
+
+
+Sorry for typos. 
+
+One more small error - CYsp1 should have both state O(Australia) and N (New Guinea)
+
+Nana 7 is Australia (O) if you want to add it back in.
+
+Overall my inclination here is not to overcook this. I think the basic message is that there has been bugger all dispersal between Aus and Islands to the north - but quite a bit between islands to the north, and especially within the oceanica group (i.e the clade oceanica through to barea). To be honest I think even a simple analysis shows this and maybe it does not need to be laboured much beyond 'look at the tree'?
+
+I am not unforcomforable with the messy basal area, I would prefer this to a more precise, but potentially inaccurate inference. We are missing outgroups, and also have very poor sampling of Asian Gehyra, so I just don't think this is the place to go making any strong claims on where these guys came from, and should rather focus on patterns of dispersal and diversification around Australia.
+
+
+
+Thanks all
+
+Yes Nick - please run with those updates and summarise. that would be great thanks.
+
+wrt the oceanica group - there is published data (including some nuc data) arguing that at least 6 of those lineages should be recognised as species. I am not sure that I am fully convinced by that when I look at how shallow the splits are - but I am happy enough to just point to that background if asked. I guess it is conceivable that repeated instances of dispersal followed by isolation on very small islands could lead to lots of shallow "speciation" in that group.
+
+Any more questions please ask, and I will try and fill you in. Very keen to get this done. I now have comments from another author (Fred Kraus) and will try and incorporate those into an updated MS ASAP.
+
+P
+
+From: Mike Lee <mike.lee@flinders.edu.au>
+Sent: Monday, 19 May 2025 2:04 PM
+To: nickmatzke.ncse@gmail.com <nickmatzke.ncse@gmail.com>
+Cc: Paul Oliver <p.oliver@griffith.edu.au>; Craig Moritz <craig.moritz@anu.edu.au>; Rebecca Laver <rebeccajlaver@gmail.com>
+ 
+From: Mike Lee <mike.lee@flinders.edu.au>
+Sent: Monday, 19 May 2025 2:04 PM
+To: nickmatzke.ncse@gmail.com <nickmatzke.ncse@gmail.com>
+Cc: Paul Oliver <p.oliver@griffith.edu.au>; Craig Moritz <craig.moritz@anu.edu.au>; Rebecca Laver <rebeccajlaver@gmail.com>
+
+
+Paul Oliver
+12:46 PM (7 hours ago)
+to me
+
+Hi again Nick
+
+Just checking in to see if you had any chance to run those analyses on the Gehyra dataset? My hope is to try and get this MS wrapped up by the end of the month 🙂
+
+Two small fixes someone pointed out to me that there are two names mispelt in the data I sent you. I can fix this downstream, but in case it is easy they are as follows -
+
+"louisadensis" should be  "louisiadensis" 
+"maculocincta" should be "maculicincta" 
+
+Let me know if I can help in any way - hoping to get back on MS and figures this week.
+
+P
+

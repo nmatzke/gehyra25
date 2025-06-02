@@ -1,0 +1,21 @@
+Hi Nick,
+
+As someone with 1 kid, three sounds like a lot of kids!
+
+See geography and treefile attached, hopefully format and names all match up - let me know if any issues.
+
+Codes are as follows -
+O=Australia
+N=New Guinea
+W = Wallacea
+E - East Melanesia
+P = Pacific
+A = Asia
+
+We have also run a reduced analysis just focusing on islands versus continents, but I think this 6 region analysis is probably the place to start.
+
+Looking forward seeing what you come up with. Might be best to run a quickie analysis first to see there are any coding issues that I have missed.
+
+Also keen to know if you have any issues with MS as it stands.
+
+Best
