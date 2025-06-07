@@ -22,18 +22,18 @@ using PhyBEARS.Uppass
 
 """
 # Run with:
-cd(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+BD_M0_mr3/"))
-include(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+BD_M0_mr3/phybears_M0_mr3_DEC+J_B=D_v2.jl"))
+cd(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D_M0_mr3/"))
+include(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D_M0_mr3/phybears_M0_mr3_DEC+J_B=D_v2.jl"))
 """
 
-setwd(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+BD_M0_mr3/"))
+setwd(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D_M0_mr3/"))
 
 # Input geography
-lgdata_fn = expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+BD_M0_mr3/geog.data")
+lgdata_fn = expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D_M0_mr3/geog.data")
 geog_df = Parsers.getranges_from_LagrangePHYLIP(lgdata_fn)
 
 # Input tree
-trfn = expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+BD_M0_mr3/tree.newick")
+trfn = expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D_M0_mr3/tree.newick")
 tr = readTopology(trfn)
 trdf = prt(tr)
 
@@ -56,6 +56,7 @@ birthRate = yuleBirthRate = (numInternal-1) / ttl_tree_length
 ##############################################
 
 bmo = construct_BioGeoBEARS_model_object()
+bmo.init[bmo.rownames .== "birthRate"] .= birthRate
 bmo.est[bmo.rownames .== "birthRate"] .= birthRate
 bmo.est[bmo.rownames .== "deathRate"] .= birthRate
 bmo.est[bmo.rownames .== "d"] .= 0.0010
@@ -166,7 +167,7 @@ library(ape)
 library(cladoRcpp)
 library(diversitree)
 library(BioGeoBEARS)
-wd = "~/GitHub/gehyra25/03_M0+BD/phybears_DECj+BD_M0_mr3/"  # CHANGE THIS
+wd = "~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D_M0_mr3/"  # CHANGE THIS
 setwd(wd)
 sourceall("/GitHub/PhyBEARS.jl/Rsrc/")
 res = PhyBEARS_res_to_BGB_res(outfns=NaN)

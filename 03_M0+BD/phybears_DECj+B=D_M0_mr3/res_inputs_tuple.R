@@ -1,6 +1,6 @@
 input_tuple = list()
-input_tuple$geogfn = "/Users/nickm/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D_M0_mr3/geog.data"
-input_tuple$trfn = "/Users/nickm/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D_M0_mr3/tree.newick"
+input_tuple$geogfn = "/Users/nickm/GitHub/gehyra25/03_M0+BD/phybears_DECj+BD_M0_mr3/geog.data"
+input_tuple$trfn = "/Users/nickm/GitHub/gehyra25/03_M0+BD/phybears_DECj+BD_M0_mr3/tree.newick"
 input_tuple$abbr = 'res'
 input_tuple$description = 'PhyBEARS res object'
 input_tuple$timesfn = ''
@@ -17,7 +17,7 @@ input_tuple$use_detection_model = FALSE
 input_tuple$print_optim = TRUE
 input_tuple$printlevel = 0
 input_tuple$on_NaN_error = -1.0e50
-input_tuple$wd = "/Users/nickm/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D_M0_mr3"
+input_tuple$wd = "/Users/nickm/GitHub/gehyra25/03_M0+BD/phybears_DECj+BD_M0_mr3"
 input_tuple$num_cores_to_use = 1
 input_tuple$cluster_already_open = FALSE
 input_tuple$use_optimx = TRUE

@@ -70,6 +70,7 @@ birthRate = yuleBirthRate = (numInternal-1) / ttl_tree_length
 ##############################################
 
 bmo = construct_BioGeoBEARS_model_object()
+bmo.init[bmo.rownames .== "birthRate"] .= birthRate
 bmo.est[bmo.rownames .== "birthRate"] .= birthRate
 bmo.est[bmo.rownames .== "deathRate"] .= 0.0
 bmo.est[bmo.rownames .== "d"] .= 0.0010

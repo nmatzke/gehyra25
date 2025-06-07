@@ -22,18 +22,18 @@ using PhyBEARS.Uppass
 
 """
 # Run with:
-cd(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D_M0_mr3/"))
-include(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D_M0_mr3/phybears_M0_mr3_DEC+J_BD_v2.jl"))
+cd(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+BD_M0_mr3/"))
+include(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+BD_M0_mr3/phybears_M0_mr3_DEC+J_BD_v2.jl"))
 """
 
-setwd(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D_M0_mr3/"))
+setwd(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+BD_M0_mr3/"))
 
 # Input geography
-lgdata_fn = expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D_M0_mr3/geog.data")
+lgdata_fn = expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+BD_M0_mr3/geog.data")
 geog_df = Parsers.getranges_from_LagrangePHYLIP(lgdata_fn)
 
 # Input tree
-trfn = expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D_M0_mr3/tree.newick")
+trfn = expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+BD_M0_mr3/tree.newick")
 tr = readTopology(trfn)
 trdf = prt(tr)
 
@@ -48,7 +48,8 @@ trdf = prt(tr)
 numTips = sum(trdf.nodeType .== "tip")
 numInternal = sum(trdf.nodeType .== "intern") + sum(trdf.nodeType .== "root")
 ttl_tree_length = sum(trdf.brlen[trdf.brlen.>0.0])
-birthRate = yuleBirthRate = (numInternal-1) / ttl_tree_length
+#birthRate = yuleBirthRate = (numInternal-1) / ttl_tree_length
+birthRate = 0.135560832
 
 ##############################################
 ##############################################
@@ -57,15 +58,16 @@ birthRate = yuleBirthRate = (numInternal-1) / ttl_tree_length
 ##############################################
 
 bmo = construct_BioGeoBEARS_model_object()
+bmo.init[bmo.rownames .== "birthRate"] .= birthRate
 bmo.est[bmo.rownames .== "birthRate"] .= birthRate
 bmo.est[bmo.rownames .== "deathRate"] .= 0.0
-bmo.est[bmo.rownames .== "d"] .= 0.0010
-bmo.est[bmo.rownames .== "e"] .= 0.0007
+bmo.est[bmo.rownames .== "d"] .= 0.001849774
+bmo.est[bmo.rownames .== "e"] .= 1.00E-12
 bmo.est[bmo.rownames .== "a"] .= 0.0
 bmo.type[bmo.rownames .== "birthRate"] .= "free"
 bmo.type[bmo.rownames .== "deathRate"] .= "free"
 bmo.type[bmo.rownames .== "j"] .= "free"
-bmo.est[bmo.rownames .== "j"] .= 0.01
+bmo.est[bmo.rownames .== "j"] .= 0.009622137
 numareas = 6
 n = numstates_from_numareas(10,6,true)
 
@@ -84,7 +86,7 @@ bmo_updater_v1!(inputs.bmo) # works
 # Set up DEC ML search
 pars = bmo.est[bmo.type .== "free"]
 func = x -> func_to_optimize_v7(x, parnames, inputs, p_Ds_v5; returnval="lnL", printlevel=1)
-pars = [0.01, 0.01, 0.01, 0.01, 0.01]
+#pars = [0.01, 0.01, 0.01, 0.01, 0.01]
 func(pars)
 function func2(pars, dummy_gradient!)
 	return func(pars)
@@ -167,7 +169,7 @@ library(ape)
 library(cladoRcpp)
 library(diversitree)
 library(BioGeoBEARS)
-wd = "~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D_M0_mr3/"  # CHANGE THIS
+wd = "~/GitHub/gehyra25/03_M0+BD/phybears_DECj+BD_M0_mr3/"  # CHANGE THIS
 setwd(wd)
 sourceall("/GitHub/PhyBEARS.jl/Rsrc/")
 res = PhyBEARS_res_to_BGB_res(outfns=NaN)

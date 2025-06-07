@@ -180,6 +180,7 @@ p_Ds_v5 = (n=p_Es_v5.n, params=p_Es_v5.params, p_indices=p_Es_v5.p_indices, p_TF
 ##############################################
 
 bmo = construct_BioGeoBEARS_model_object()
+bmo.init[bmo.rownames .== "birthRate"] .= birthRate
 bmo.est[bmo.rownames .== "birthRate"] .= birthRate
 bmo.est[bmo.rownames .== "deathRate"] .= 0.0
 bmo.est[bmo.rownames .== "d"] .= 0.0010
