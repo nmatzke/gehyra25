@@ -82,12 +82,18 @@ n = numstates_from_numareas(numareas,numareas,false)
 # 1.0 * 2.0^-100.0 = 7.888609052210118e-31
 bmo.type[bmo.rownames .== "u"] .= "fixed"
 bmo.init[bmo.rownames .== "u"] .= -100.0
+bmo.min[bmo.rownames .== "u"] .= -100.0
+bmo.max[bmo.rownames .== "u"] .= 0.0
 bmo.est[bmo.rownames .== "u"] .= -100.0
+bmo.type[bmo.rownames .== "u_e"] .= "fixed" # We don't need the extirpation rate to be 0 for large ranges
+bmo.init[bmo.rownames .== "u_e"] .= 0.0
+bmo.est[bmo.rownames .== "u_e"] .= 0.0
+bmo
 
 
 # CHANGE PARAMETERS BEFORE E INTERPOLATOR
 max_range_size = 6 # replaces any background max_range_size=1
-inputs = setup_DEC_SSE2(numareas, tr, geog_df; root_age_mult=1.5, max_range_size=max_range_size, include_null_range=true, bmo=bmo);
+inputs = setup_DEC_SSE2(numareas, tr, geog_df; root_age_mult=1.5, max_range_size=max_range_size, include_null_range=false, bmo=bmo);
 (setup, res, trdf, bmo, files, solver_options, p_Es_v5, Es_tspan) = inputs;
 p_Ds_v5 = inputs.p_Ds_v5;
 
@@ -95,7 +101,8 @@ lower = bmo.min[bmo.type .== "free"]
 upper = bmo.max[bmo.type .== "free"]
 pars = bmo.est[bmo.type .== "free"]
 parnames = bmo.rownames[bmo.type .== "free"]
-bmo_updater_v1!(inputs.bmo) # works
+#bmo_updater_v1!(inputs.bmo) # works but doesn't update deathRate etc.
+bmo_updater_v2(inputs.bmo, inputs.setup.bmo_rows) # works
 
 # Set up DEC ML search
 pars = bmo.est[bmo.type .== "free"]
@@ -134,7 +141,8 @@ opt.ftol_abs = 0.001 # tolerance on log-likelihood
 # Get the inputs & res:
 pars = optx
 inputs.bmo.est[inputs.bmo.type .== "free"] .= pars
-bmo_updater_v1!(inputs.bmo)
+#bmo_updater_v1!(inputs.bmo) # works but doesn't update deathRate etc.
+bmo_updater_v2(inputs.bmo, inputs.setup.bmo_rows) # works
 p_Ds_v5_updater_v1!(p_Es_v5, inputs);
 # SEE runtests_ClaSSE_tree_n13_DECj_WORKS.jl
 # save_everystep_EQ_false_CAN_MATTER_EVEN_ON_THE_Ds
@@ -199,16 +207,16 @@ max_range_size = res|inputs|max_range_size
 include_null_range = res|inputs|include_null_range
 
 pdffn = "phyBEARS_Gehyra2_DEC+J+B+e_M0_unconstrained_v1.pdf"  # CHANGE THIS
-pdf(pdffn, height=24, width=9)
+pdf(pdffn, height=12, width=9)
 analysis_titletxt ="PhyBEARS DEC+J+B+e on Gehyra M0_unconstrained"  # CHANGE THIS
 results_object = res
 scriptdir = np(system.file("extdata/a_scripts", package="BioGeoBEARS"))
 
 # States
-res1 = plot_BioGeoBEARS_results(results_object, analysis_titletxt, addl_params=list("j"), plotwhat="text", label.offset=0.45, tipcex=0.7, statecex=0.7, splitcex=0.6, titlecex=0.8, plotsplits=TRUE, cornercoords_loc=scriptdir, include_null_range=TRUE, tr=tr, tipranges=tipranges)
+res1 = plot_BioGeoBEARS_results(results_object, analysis_titletxt, addl_params=list("j"), plotwhat="text", label.offset=0.45, tipcex=0.7, statecex=0.7, splitcex=0.6, titlecex=0.8, plotsplits=TRUE, cornercoords_loc=scriptdir, include_null_range=FALSE, tr=tr, tipranges=tipranges)
 
 # Pie chart
-plot_BioGeoBEARS_results(results_object, analysis_titletxt, addl_params=list("j"), plotwhat="pie", label.offset=0.45, tipcex=0.7, statecex=0.7, splitcex=0.6, titlecex=0.8, plotsplits=TRUE, cornercoords_loc=scriptdir, include_null_range=TRUE, tr=tr, tipranges=tipranges)
+plot_BioGeoBEARS_results(results_object, analysis_titletxt, addl_params=list("j"), plotwhat="pie", label.offset=0.45, tipcex=0.7, statecex=0.7, splitcex=0.6, titlecex=0.8, plotsplits=TRUE, cornercoords_loc=scriptdir, include_null_range=FALSE, tr=tr, tipranges=tipranges)
 
 dev.off()
 cmdstr = paste("open ", pdffn, sep="")

@@ -183,7 +183,7 @@ max_range_size = res|inputs|max_range_size
 include_null_range = res|inputs|include_null_range
 
 pdffn = "phyBEARS_Gehyra2_DEC+J+B=D_M0_unconstrained_v1.pdf"  # CHANGE THIS
-pdf(pdffn, height=24, width=9)
+pdf(pdffn, height=12, width=9)
 analysis_titletxt ="PhyBEARS DEC+J+B=D on Gehyra M0_unconstrained"  # CHANGE THIS
 results_object = res
 scriptdir = np(system.file("extdata/a_scripts", package="BioGeoBEARS"))

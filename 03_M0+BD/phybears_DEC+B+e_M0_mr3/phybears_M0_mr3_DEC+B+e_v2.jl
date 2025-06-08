@@ -64,6 +64,25 @@ numareas = 6
 n = numstates_from_numareas(numareas,numareas,false)
 #n = 176            # 10 areas, maxareas 3, 176 states
 
+# Update deathRate based on e (single-area extirpation rate)
+# NOTE: This also needs a mu of 0.0 for ranges with more than 1 area
+# 
+# You can achieve this with an area matrix with areas of size 1.0,
+# and a "u" fixed to -100.0. Thus, the e for 1 area is:
+#
+# 1.0 * 1.0^-100.0 = 1.0
+#
+# And for 2 areas, it is
+# 1.0 * 2.0^-100.0 = 7.888609052210118e-31
+bmo.type[bmo.rownames .== "u"] .= "fixed"
+bmo.init[bmo.rownames .== "u"] .= -100.0
+bmo.est[bmo.rownames .== "u"] .= -100.0
+bmo.type[bmo.rownames .== "u_e"] .= "fixed" # We don't need the extirpation rate to be 0 for large ranges
+bmo.init[bmo.rownames .== "u_e"] .= 0.0
+bmo.est[bmo.rownames .== "u_e"] .= 0.0
+bmo
+
+
 # CHANGE PARAMETERS BEFORE E INTERPOLATOR
 root_age_mult=1.5; max_range_size=6; include_null_range=false; max_range_size=NaN
 max_range_size = 6 # replaces any background max_range_size=1
@@ -116,7 +135,7 @@ bmo.est[bmo.rownames .== "a"] .= 0.0
 bmo.est[bmo.rownames .== "j"] .= 0.0
 bmo.type[bmo.rownames .== "j"] .= "fixed"
 numareas = 6
-n = numstates_from_numareas(numareas,numareas,true)
+n = numstates_from_numareas(numareas,numareas,false)
 
 # Update deathRate based on e (single-area extirpation rate)
 # NOTE: This also needs a mu of 0.0 for ranges with more than 1 area
@@ -131,6 +150,10 @@ n = numstates_from_numareas(numareas,numareas,true)
 bmo.type[bmo.rownames .== "u"] .= "fixed"
 bmo.init[bmo.rownames .== "u"] .= -100.0
 bmo.est[bmo.rownames .== "u"] .= -100.0
+bmo.type[bmo.rownames .== "u_e"] .= "fixed" # We don't need the extirpation rate to be 0 for large ranges
+bmo.init[bmo.rownames .== "u_e"] .= 0.0
+bmo.est[bmo.rownames .== "u_e"] .= 0.0
+bmo
 
 
 
@@ -145,7 +168,8 @@ lower = bmo.min[bmo.type .== "free"]
 upper = bmo.max[bmo.type .== "free"]
 pars = bmo.est[bmo.type .== "free"]
 parnames = bmo.rownames[bmo.type .== "free"]
-bmo_updater_v1!(inputs.bmo) # works
+#bmo_updater_v1!(inputs.bmo) # works but doesn't update deathRate etc.
+bmo_updater_v2(inputs.bmo, inputs.setup.bmo_rows) # works
 
 # Set up DEC ML search
 pars = bmo.est[bmo.type .== "free"]
@@ -184,7 +208,9 @@ opt.ftol_abs = 0.001 # tolerance on log-likelihood
 # Get the inputs & res:
 pars = optx
 inputs.bmo.est[inputs.bmo.type .== "free"] .= pars
-bmo_updater_v1!(inputs.bmo)
+#bmo_updater_v1!(inputs.bmo) # works but doesn't update deathRate etc.
+bmo_updater_v2(inputs.bmo, inputs.setup.bmo_rows) # works
+
 p_Ds_v5_updater_v1!(p_Es_v5, inputs);
 # SEE runtests_ClaSSE_tree_n13_DECj_WORKS.jl
 # save_everystep_EQ_false_CAN_MATTER_EVEN_ON_THE_Ds
@@ -249,7 +275,7 @@ max_range_size = res|inputs|max_range_size
 include_null_range = res|inputs|include_null_range
 
 pdffn = "phyBEARS_Gehyra2_DEC+Birth+eDeath_M0_unconstrained_v1.pdf"  # CHANGE THIS
-pdf(pdffn, height=24, width=9)
+pdf(pdffn, height=12, width=9)
 analysis_titletxt ="PhyBEARS DEC+Birth+eDeath on Gehyra M0_unconstrained"  # CHANGE THIS
 results_object = res
 scriptdir = np(system.file("extdata/a_scripts", package="BioGeoBEARS"))
