@@ -23,33 +23,36 @@ include(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DEC+BD_M0_mr3/phybears_M
 cd(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+BD_M0_mr3/"))
 include(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+BD_M0_mr3/phybears_M0_mr3_DEC+J_BD_v2.jl"))
 
+# birthRate, deathRate=e, no null range
 cd(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DEC+B+e_M0_mr3/"))
 include(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DEC+B+e_M0_mr3/phybears_M0_mr3_DEC+B+e_v2.jl"))
 
+# birthRate, deathRate=e, no null range, +J
 cd(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B+e_M0_mr3/"))
 include(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B+e_M0_mr3/phybears_M0_mr3_DEC+J_B+e_v2.jl"))
 
-# e=deathRate
-cd(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DEC+B+e_M0_mr3/"))
-include(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DEC+B+e_M0_mr3/phybears_M0_mr3_DEC+B+e_v2.jl"))
-
-# e=deathRate, +J
-cd(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B+e_M0_mr3/"))
-include(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B+e_M0_mr3/phybears_M0_mr3_DEC+J_B+e_v2.jl"))
-
-# birthRate=e=deathRate
+# birthRate=deathRate=e (no null range)
 cd(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DEC+B=D=e_M0_mr3/"))
 include(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DEC+B=D=e_M0_mr3/phybears_M0_mr3_DEC+B=D=e_v2.jl"))
 
-# birthRate=e=deathRate, +J
+# birthRate=deathRate=e (no null range), +J
 cd(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D=e_M0_mr3/"))
-include(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D=e_M0_mr3/phybears_M0_mr3_DEC+J+B=D=e_v2.jl"))
+include(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D=e_M0_mr3/phybears_M0_mr3_DEC+J_B=D=e_v2.jl"))
+
+# birthRate=e=deathRate (no null range)
+cd(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DEC+B=D=e_M0_mr3/"))
+include(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DEC+B=D=e_M0_mr3/phybears_M0_mr3_DEC+B=D=e_v2.jl"))
+
+# birthRate=e=deathRate (no null range), +J
+cd(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D=e_M0_mr3/"))
+include(expanduser("~/GitHub/gehyra25/03_M0+BD/phybears_DECj+B=D=e_M0_mr3/phybears_M0_mr3_DEC+J_B=D=e_v2.jl"))
 
 
 #######################################################
 # R code
 #######################################################
-dirs = c("phybears_DEC_M0_mr3",
+dirs = c(
+"phybears_DEC_M0_mr3",
 "phybears_DECj_M0_mr3",
 "phybears_DEC+B=D_M0_mr3",
 "phybears_DECj+B=D_M0_mr3",
