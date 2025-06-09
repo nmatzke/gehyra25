@@ -51,6 +51,10 @@ birthRate = yuleBirthRate = (numInternal-1) / ttl_tree_length
 d_start = 0.001
 
 bmo = construct_BioGeoBEARS_model_object()
+
+bmo.init[bmo.rownames .== "d"] .= d_start
+bmo.est[bmo.rownames .== "d"] .= d_start
+
 bmo.type[bmo.rownames .== "birthRate"] .= "free"
 bmo.type[bmo.rownames .== "deathRate"] .= "e"
 bmo.type[bmo.rownames .== "e"] .= "d"
@@ -58,8 +62,6 @@ bmo.init[bmo.rownames .== "birthRate"] .= birthRate
 bmo.est[bmo.rownames .== "birthRate"] .= birthRate
 bmo.init[bmo.rownames .== "deathRate"] .= d_start
 bmo.est[bmo.rownames .== "deathRate"] .= d_start
-bmo.init[bmo.rownames .== "d"] .= d_start
-bmo.est[bmo.rownames .== "d"] .= d_start
 bmo.init[bmo.rownames .== "e"] .= d_start
 bmo.est[bmo.rownames .== "e"] .= d_start
 bmo.est[bmo.rownames .== "a"] .= 0.0
@@ -128,16 +130,19 @@ Es_interpolator(1.0)
 ##############################################
 
 bmo = construct_BioGeoBEARS_model_object()
+
+bmo.init[bmo.rownames .== "d"] .= d_start
+bmo.est[bmo.rownames .== "d"] .= d_start
+
 bmo.type[bmo.rownames .== "birthRate"] .= "free"
-bmo.type[bmo.rownames .== "deathRate"] .= "birthRate"
-bmo.type[bmo.rownames .== "e"] .= "birthRate"
+bmo.type[bmo.rownames .== "deathRate"] .= "e"
+bmo.type[bmo.rownames .== "e"] .= "d"
 bmo.init[bmo.rownames .== "birthRate"] .= birthRate
 bmo.est[bmo.rownames .== "birthRate"] .= birthRate
-bmo.init[bmo.rownames .== "deathRate"] .= birthRate
-bmo.est[bmo.rownames .== "deathRate"] .= birthRate
-bmo.init[bmo.rownames .== "e"] .= birthRate
-bmo.est[bmo.rownames .== "e"] .= birthRate
-bmo.est[bmo.rownames .== "d"] .= 0.0010
+bmo.init[bmo.rownames .== "deathRate"] .= d_start
+bmo.est[bmo.rownames .== "deathRate"] .= d_start
+bmo.init[bmo.rownames .== "e"] .= d_start
+bmo.est[bmo.rownames .== "e"] .= d_start
 bmo.est[bmo.rownames .== "a"] .= 0.0
 bmo.est[bmo.rownames .== "j"] .= 0.0
 bmo.type[bmo.rownames .== "j"] .= "fixed"

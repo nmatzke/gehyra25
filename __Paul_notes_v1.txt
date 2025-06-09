@@ -1,9 +1,9 @@
 Hi folks! Sorry this took a bit.  Here's the quick-and-easy BGB run, this could be modified for more complex models as needed.
 
-O=Australia
-N=New Guinea
+O = Australia
+N = New Guinea
 W = Wallacea
-E - East Melanesia
+E = East Melanesia
 P = Pacific
 A = Asia
 

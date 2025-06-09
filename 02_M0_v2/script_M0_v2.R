@@ -313,7 +313,7 @@ check_BioGeoBEARS_run(BioGeoBEARS_run_object)
 
 # For a slow analysis, run once, then set runslow=FALSE to just 
 # load the saved result.
-runslow = TRUE
+runslow = FALSE
 resfn = "Gehyra_DEC_M0_unconstrained_v1.Rdata"
 if (runslow)
     {
@@ -396,7 +396,7 @@ BioGeoBEARS_run_object = fix_BioGeoBEARS_params_minmax(BioGeoBEARS_run_object=Bi
 check_BioGeoBEARS_run(BioGeoBEARS_run_object)
 
 resfn = "Gehyra_DEC+J_M0_unconstrained_v1.Rdata"
-runslow = TRUE
+runslow = FALSE
 if (runslow)
     {
     #sourceall("/Dropbox/_njm/__packages/BioGeoBEARS_setup/")
@@ -417,7 +417,7 @@ if (runslow)
 # PDF plots
 #######################################################
 pdffn = "Gehyra_DEC_vs_DEC+J_M0_unconstrained_v1.pdf"
-pdf(pdffn, height=18, width=9)
+pdf(pdffn, height=12, width=9)
 
 #######################################################
 # Plot ancestral states - DEC
@@ -543,7 +543,7 @@ BioGeoBEARS_run_object$BioGeoBEARS_model_object@params_table["mx01v","est"] = 0.
 BioGeoBEARS_run_object = fix_BioGeoBEARS_params_minmax(BioGeoBEARS_run_object=BioGeoBEARS_run_object)
 check_BioGeoBEARS_run(BioGeoBEARS_run_object)
 
-runslow = TRUE
+runslow = FALSE
 resfn = "Gehyra_DIVALIKE_M0_unconstrained_v1.Rdata"
 if (runslow)
     {
@@ -645,7 +645,7 @@ BioGeoBEARS_run_object = fix_BioGeoBEARS_params_minmax(BioGeoBEARS_run_object=Bi
 check_BioGeoBEARS_run(BioGeoBEARS_run_object)
 
 resfn = "Gehyra_DIVALIKE+J_M0_unconstrained_v1.Rdata"
-runslow = TRUE
+runslow = FALSE
 if (runslow)
     {
     #sourceall("/Dropbox/_njm/__packages/BioGeoBEARS_setup/")
@@ -663,7 +663,7 @@ if (runslow)
     }
 
 pdffn = "Gehyra_DIVALIKE_vs_DIVALIKE+J_M0_unconstrained_v1.pdf"
-pdf(pdffn, height=18, width=9)
+pdf(pdffn, height=12, width=9)
 
 #######################################################
 # Plot ancestral states - DIVALIKE
@@ -812,7 +812,7 @@ BioGeoBEARS_run_object$BioGeoBEARS_model_object@params_table["mx01y","est"] = 0.
 BioGeoBEARS_run_object = fix_BioGeoBEARS_params_minmax(BioGeoBEARS_run_object=BioGeoBEARS_run_object)
 check_BioGeoBEARS_run(BioGeoBEARS_run_object)
 
-runslow = TRUE
+runslow = FALSE
 resfn = "Gehyra_BAYAREALIKE_M0_unconstrained_v1.Rdata"
 if (runslow)
     {
@@ -933,7 +933,7 @@ BioGeoBEARS_run_object = fix_BioGeoBEARS_params_minmax(BioGeoBEARS_run_object=Bi
 check_BioGeoBEARS_run(BioGeoBEARS_run_object)
 
 resfn = "Gehyra_BAYAREALIKE+J_M0_unconstrained_v1.Rdata"
-runslow = TRUE
+runslow = FALSE
 if (runslow)
     {
     res = bears_optim_run(BioGeoBEARS_run_object)
@@ -949,7 +949,7 @@ if (runslow)
     }
 
 pdffn = "Gehyra_BAYAREALIKE_vs_BAYAREALIKE+J_M0_unconstrained_v1.pdf"
-pdf(pdffn, height=18, width=9)
+pdf(pdffn, height=12, width=9)
 
 #######################################################
 # Plot ancestral states - BAYAREALIKE
